@@ -1,0 +1,15 @@
+XpsGuiSessionLock
+__xps/
+_impactbatch.log
+bitinit.log
+bootloops/
+clock_generator_0.log
+hdl/
+implementation/
+platgen.log
+platgen.opt
+synthesis/
+system.bsb
+system.log
+system.make
+system_incl.make
