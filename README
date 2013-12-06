@@ -3,3 +3,6 @@ Simple PCIe reference design for the Opus card
 
 Writes to the serial console through PCIe.
 
+So, the big thing here is that the PCIe block actually needs to enable the BARs
+before the system gets enumerated. I'm not exactly sure why this is, but it
+works after you do this.
