@@ -1,8 +1,84 @@
 #  Generic Template
-Net fpga_0_RS232_RX_pin LOC=F20;
-Net fpga_0_RS232_TX_pin LOC=G21;
-Net fpga_0_clk_1_sys_clk_pin TNM_NET = sys_clk_pin;
+Net fpga_0_RS232_RX_pin             LOC = F20;
+Net fpga_0_RS232_TX_pin             LOC = G21;
+
+Net fpga_0_clk_1_sys_clk_pin        TNM_NET = sys_clk_pin;
 TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 50000 kHz;
-Net fpga_0_clk_1_sys_clk_pin LOC=E13;
-Net fpga_0_rst_1_sys_rst_pin TIG;
-Net fpga_0_rst_1_sys_rst_pin LOC=K5		| PULLUP;
+Net fpga_0_clk_1_sys_clk_pin        LOC = E13;
+
+Net fpga_0_rst_1_sys_rst_pin        TIG;
+Net fpga_0_rst_1_sys_rst_pin        LOC = K5    | IOSTANDARD = LVCMOS33 | PULLUP;
+Net pcie_clk_p                      LOC = D4    | IOSTANDARD = LVDS_25;
+Net pcie_clk_n                      LOC = D3    | IOSTANDARD = LVDS_25;
+
+
+Net pcie_rxn<0> LOC=D1  |  IOSTANDARD = LVDS_25;
+Net pcie_rxn<1> LOC=E1  |  IOSTANDARD = LVDS_25;
+Net pcie_rxn<2> LOC=K1  |  IOSTANDARD = LVDS_25;
+Net pcie_rxn<3> LOC=L1  |  IOSTANDARD = LVDS_25;
+#Net pcie_rxn<4> LOC=T1  |  IOSTANDARD = LVDS_25;
+#Net pcie_rxn<5> LOC=U1  |  IOSTANDARD = LVDS_25;
+#Net pcie_rxn<6> LOC=AB1  |  IOSTANDARD = LVDS_25;
+#Net pcie_rxn<7> LOC=AC1  |  IOSTANDARD = LVDS_25;
+
+
+Net pcie_rxp<0> LOC=C1  |  IOSTANDARD = LVDS_25;
+Net pcie_rxp<1> LOC=F1  |  IOSTANDARD = LVDS_25;
+Net pcie_rxp<2> LOC=J1  |  IOSTANDARD = LVDS_25;
+Net pcie_rxp<3> LOC=M1  |  IOSTANDARD = LVDS_25;
+#Net pcie_rxp<4> LOC=R1  |  IOSTANDARD = LVDS_25;
+#Net pcie_rxp<5> LOC=V1  |  IOSTANDARD = LVDS_25;
+#Net pcie_rxp<6> LOC=AA1  |  IOSTANDARD = LVDS_25;
+#Net pcie_rxp<7> LOC=AD1  |  IOSTANDARD = LVDS_25;
+
+
+Net pcie_txn<0> LOC=C2  |  IOSTANDARD = LVDS_25;
+Net pcie_txn<1> LOC=F2  |  IOSTANDARD = LVDS_25;
+Net pcie_txn<2> LOC=J2  |  IOSTANDARD = LVDS_25;
+Net pcie_txn<3> LOC=M2  |  IOSTANDARD = LVDS_25;
+#Net pcie_txn<4> LOC=R2  |  IOSTANDARD = LVDS_25;
+#Net pcie_txn<5> LOC=V2  |  IOSTANDARD = LVDS_25;
+#Net pcie_txn<6> LOC=AA2  |  IOSTANDARD = LVDS_25;
+#Net pcie_txn<7> LOC=AD2  |  IOSTANDARD = LVDS_25;
+
+
+Net pcie_txp<0> LOC=B2  |  IOSTANDARD = LVDS_25;
+Net pcie_txp<1> LOC=G2  |  IOSTANDARD = LVDS_25;
+Net pcie_txp<2> LOC=H2  |  IOSTANDARD = LVDS_25;
+Net pcie_txp<3> LOC=N2  |  IOSTANDARD = LVDS_25;
+#Net pcie_txp<4> LOC=P2  |  IOSTANDARD = LVDS_25;
+#Net pcie_txp<5> LOC=W2  |  IOSTANDARD = LVDS_25;
+#Net pcie_txp<6> LOC=Y2  |  IOSTANDARD = LVDS_25;
+#Net pcie_txp<7> LOC=AE2  |  IOSTANDARD = LVDS_25;
+
+
+################################################################################ 
+# Timing constraints
+################################################################################ 
+
+
+NET "plbv46_pcie_0/*sig_pulse_reset_n" TIG;
+NET "plbv46_pcie_0/*core_clk"    PERIOD = 4 ns;
+NET "plbv46_pcie_0/*Bridge_Clk"  PERIOD = 8 ns;
+
+
+#################################################################################
+## Clock domain crossing constraints
+#################################################################################
+
+#         (Copy and paste in system.ucf when using asyncronously)
+
+NET "plbv46_pcie_0/*MPLB_Clk"      PERIOD =  10 ns;
+NET "plbv46_pcie_0/*SPLB_Clk"      PERIOD =  10 ns;
+
+NET "plbv46_pcie_0/*SPLB_Clk"      TNM_NET = "SPLB_Clk";
+NET "plbv46_pcie_0/*Bridge_Clk"    TNM_NET = "Bridge_Clk";
+
+# Timing constraints between clock domain boundaries
+
+TIMESPEC "TS_PLB_PCIe" = FROM "SPLB_Clk" TO "Bridge_Clk" 8 ns datapathonly;
+TIMESPEC "TS_PCIe_PLB" = FROM "Bridge_Clk" TO "SPLB_Clk" 10 ns datapathonly;
+
+
+
+
