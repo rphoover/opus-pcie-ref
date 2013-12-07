@@ -1,8 +1,20 @@
 Simple PCIe reference design for the Opus card
 ==============================================
+Tested with Xilinx EDK tools version 11.3.
+
 
 Writes to the serial console through PCIe.
 
 So, the big thing here is that the PCIe block actually needs to enable the BARs
 before the system gets enumerated. I'm not exactly sure why this is, but it
-works after you do this.
+works after you do this. The included firmware will actually do this, so
+everything should 'just work' when you restart your host computer after
+downloading the bitstream.
+
+The default target of the Make file will build the bitstream. `make download`
+will download the bitstream to your Opus board if you have a programmer
+attached to the JTAG port.
+
+The UART should be setup as described in the reference manual for the Linux
+system.
+
