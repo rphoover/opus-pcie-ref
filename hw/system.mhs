@@ -20,10 +20,10 @@
  PORT fpga_0_RS232_TX_pin = fpga_0_RS232_TX_pin, DIR = O
  PORT fpga_0_clk_1_sys_clk_pin = CLK_S, DIR = I, SIGIS = CLK, CLK_FREQ = 50000000
  PORT fpga_0_rst_1_sys_rst_pin = sys_rst_s, DIR = I, SIGIS = RST, RST_POLARITY = 0
- PORT pcie_txp = pcie_txp, DIR = O, VEC = [7:0]
- PORT pcie_txn = pcie_txn, DIR = O, VEC = [7:0]
- PORT pcie_rxp = pcie_rxp, DIR = I, VEC = [7:0]
- PORT pcie_rxn = pcie_rxn, DIR = I, VEC = [7:0]
+ PORT pcie_txp = pcie_txp, DIR = O, VEC = [3:0]
+ PORT pcie_txn = pcie_txn, DIR = O, VEC = [3:0]
+ PORT pcie_rxp = pcie_rxp, DIR = I, VEC = [3:0]
+ PORT pcie_rxn = pcie_rxn, DIR = I, VEC = [3:0]
  PORT pcie_clk_p = pcie_clk, DIR = I, DIFFERENTIAL_POLARITY = P, SIGIS = CLK
  PORT pcie_clk_n = pcie_clk, DIR = I, DIFFERENTIAL_POLARITY = N, SIGIS = CLK
 
@@ -132,7 +132,7 @@ BEGIN plbv46_pcie
  PARAMETER C_DEVICE_ID = 0x1234
  PARAMETER C_VENDOR_ID = 0x10ee
  PARAMETER C_CLASS_CODE = 0x078000
- PARAMETER C_NO_OF_LANES = 8
+ PARAMETER C_NO_OF_LANES = 4
  PARAMETER C_BASEADDR = 0x80010000
  PARAMETER C_HIGHADDR = 0x8001FFFF
  PARAMETER C_PCIBAR_LEN_0 = 17
