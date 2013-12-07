@@ -13,7 +13,7 @@ UserCmd1Type: 0
 UserCmd2: 
 UserCmd2Type: 0
 GenSimTB: 0
-SdkExportBmmBit: 1
+SdkExportBmmBit: 0
 SdkExportDir: SDK/SDK_Export
 InsertNoPads: 0
 WarnForEAArch: 1
@@ -25,5 +25,5 @@ EnableParTimingError: 1
 ShowLicenseDialog: 1
 BInfo: 
 Processor: ppc440_0
-ElfImp: 
+ElfImp: ../fw/executable.elf
 ElfSim: 

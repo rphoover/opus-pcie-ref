@@ -13,3 +13,6 @@ system.bsb
 system.log
 system.make
 system_incl.make
+SDK/
+*.log
+

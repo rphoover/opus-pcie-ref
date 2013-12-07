@@ -1,0 +1,5 @@
+executable.elf
+helloworld.o
+libgen.log
+platform.o
+ppc440_0/
