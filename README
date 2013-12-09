@@ -1,6 +1,6 @@
 Simple PCIe reference design for the Opus card
-==============================================
-Tested with Xilinx EDK tools version 11.3.
+===============================================================================
+Tested with Xilinx EDK tools version 11.3 on Fedora 19.
 
 
 Writes to the serial console through PCIe.
