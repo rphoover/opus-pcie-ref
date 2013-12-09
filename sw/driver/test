@@ -1,0 +1,5 @@
+
+sudo insmod opus-driver.ko
+sudo rmmod opus-driver.ko
+sudo dmesg -c
+
