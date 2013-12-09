@@ -10,7 +10,8 @@ firmware: sdk
 	$(MAKE) -C fw/
 
 bitstream: firmware
-	$(MAKE) -C hw -f system.make init_bram
+	$(MAKE) -C hw -f system.make bits
+	cd hw/ && bitinit -p xc5vfx30tff665-1 system.mhs -pe ppc440_0 ../fw/executable.elf -bt implementation/system.bit -o implementation/download.bit
 
 download: bitstream
 	$(MAKE) -C hw -f system.make download
